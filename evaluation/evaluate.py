@@ -4,7 +4,7 @@ from fuzzywuzzy import fuzz
 import json
 from typing import List, Dict
 
-API_URL = "http://127.0.0.1:8000/"  # Replace with your API URL
+API_URL = "https://shl-recommendation-system-yoow.onrender.com"
 
 # Test queries with ground-truth relevant assessment names
 TEST_QUERIES = [

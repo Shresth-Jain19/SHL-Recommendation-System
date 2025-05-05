@@ -4,7 +4,6 @@ from urllib.parse import urljoin
 import time
 import warnings
 import json
-import os
 # Suppress warnings
 warnings.filterwarnings("ignore")
 
