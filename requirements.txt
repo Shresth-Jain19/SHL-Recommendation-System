@@ -12,3 +12,4 @@ google-genai
 beautifulsoup4
 chromadb
 sentence-transformers
+hf_xet

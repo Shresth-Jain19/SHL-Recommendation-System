@@ -4,6 +4,8 @@ from typing import List, Optional
 import os
 import numpy as np
 from fastapi.middleware.cors import CORSMiddleware
+from sentence_transformers import SentenceTransformer
+import chromadb
 
 from app.data_loader import load_shl_data, prepare_text_for_embedding
 
