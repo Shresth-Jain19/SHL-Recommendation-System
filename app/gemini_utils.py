@@ -1,3 +1,14 @@
+"""
+SHL Assessment Recommendation System - Gemini AI Utilities
+---------------------------------------------------------
+This module integrates Google's Gemini AI for enhanced processing of job URLs.
+It extracts relevant information from job postings to create optimized search
+queries for the recommendation system.
+
+The module handles API configuration, error handling, and prompt engineering
+to ensure high-quality extraction of job requirements.
+"""
+
 from google import genai
 from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 import os
@@ -8,14 +19,34 @@ load_dotenv()
 
 # === FETCH API KEY ===
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    print("⚠️ Warning: GEMINI_API_KEY not found in environment variables")
 
 # === CONFIGURE GEMINI ===
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 # === PROMPT AND MODEL ===
-model_id = "gemini-2.5-flash-preview-04-17"
+model_id = "gemini-2.5-flash-preview-04-17"  # Using the latest available Gemini model
 
 def get_query_from_url(url: str) -> str:
+    """
+    Process a job posting URL to extract relevant information for recommendation.
+    
+    Uses Google's Gemini AI with web search capability to visit the URL,
+    read the job description, and create an optimized search query that
+    captures key requirements for finding suitable assessments.
+    
+    Args:
+        url (str): The URL of a job posting
+        
+    Returns:
+        str: A natural language search query optimized for assessment recommendation
+        
+    Notes:
+        - Falls back to a generic query if the URL cannot be processed
+        - Automatically extracts job title, skills, and seniority level
+    """
+    # Carefully crafted prompt to guide Gemini's extraction
     prompt = f"""
 Visit this job URL and read the full job description carefully:
 {url}
@@ -31,15 +62,18 @@ Include:
 """
 
     try:
+        # Call Gemini API with web search capabilities
         response = client.models.generate_content(
             contents=prompt,
             model=model_id,
             config=GenerateContentConfig(
-                tools=[Tool(google_search=GoogleSearch())], response_modalities=["TEXT"]
+                tools=[Tool(google_search=GoogleSearch())], 
+                response_modalities=["TEXT"]
             ),
         )
         return response.text.strip()
     except Exception as e:
+        # Log error and return fallback query
         print(f"⚠️ Gemini failed: {e}")
         return (
             "Entry-level role, basic technical and cognitive skills, under 30 minutes"

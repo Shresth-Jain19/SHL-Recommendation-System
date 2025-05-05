@@ -4,7 +4,7 @@ import pandas as pd
 
 st.set_page_config(page_title="SHL Assessment Recommendation", page_icon="🎯", layout="wide")
 
-API_URL = "https://shl-recommendation-system-yoow.onrender.com"
+API_URL = "https://shl-recommendation-system-yoow.onrender.com/"
 
 # Custom CSS for modern look
 st.markdown("""
