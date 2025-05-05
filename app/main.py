@@ -25,6 +25,11 @@ class AssessmentResponse(BaseModel):
 
 app = FastAPI()
 
+# Add this near your other endpoints
+@app.get("/")
+def root():
+    return {"message": "SHL Recommendation API", "status": "online"}
+
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
