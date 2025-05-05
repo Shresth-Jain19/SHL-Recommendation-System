@@ -30,7 +30,7 @@ Include:
 - Output must be ≤ 2 sentences, plain text only
 """
 
-    print("📤 Prompt sent to Gemini:\n", prompt)
+    # print("📤 Prompt sent to Gemini:\n", prompt)
 
     try:
         response = client.models.generate_content(

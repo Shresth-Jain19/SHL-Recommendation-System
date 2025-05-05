@@ -19,17 +19,14 @@ except Exception as e:
     raise
 
 def chroma_search(query_text, top_k=10):
-    print(f"[DEBUG] Searching ChromaDB for: {query_text}")
     query_emb = model.encode([query_text])[0].tolist()
     results = collection.query(
         query_embeddings=[query_emb],
         n_results=top_k,
         include=["metadatas", "documents"]
     )
-    print(f"[DEBUG] ChromaDB returned {len(results['metadatas'][0])} results")
     if len(results['metadatas'][0]) > 0:
-        print(f"[DEBUG] First result metadata: {results['metadatas'][0][0]}")
-        print(f"[DEBUG] First result document: {results['documents'][0][0]}")
+        pass
     else:
         print("[DEBUG] No results found in ChromaDB.")
     return results["metadatas"][0]
