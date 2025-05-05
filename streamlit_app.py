@@ -55,7 +55,7 @@ if st.button("Get Recommendations"):
         with st.spinner("Fetching recommendations..."):
             payload = {"query": query}
             try:
-                response = requests.post(API_URL, json=payload, params={"top_k": top_k}, timeout=60)
+                response = requests.post(f"{API_URL}/recommend", json=payload, params={"top_k": top_k}, timeout=60)
                 if response.status_code == 200:
                     results = response.json()
                     if results:
