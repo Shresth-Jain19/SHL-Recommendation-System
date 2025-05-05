@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 
-API_URL = "http://localhost:8000/recommend"  # Change to your deployed FastAPI URL if needed
+API_URL = "https://shl-recommendation-system-yoow.onrender.com"  
 
 st.set_page_config(page_title="SHL Assessment Recommendation", page_icon="🎯", layout="wide")
 
