@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pydantic
+requests
+numpy
+faiss-cpu
+python-dotenv
+streamlit
+pandas
+pytest
+google-genai
+beautifulsoup4
+chromadb
+sentence-transformers

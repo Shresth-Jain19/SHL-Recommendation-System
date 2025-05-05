@@ -1,4 +1,8 @@
 .venv/
+__pycache__/
+__init__.py
 *.iml
 out
 gen
+.env
+REFERENCE/
