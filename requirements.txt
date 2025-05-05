@@ -1,3 +1,4 @@
+-r requirements-pytorch.txt
 fastapi
 uvicorn
 pydantic
