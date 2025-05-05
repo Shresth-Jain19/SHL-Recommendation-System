@@ -3,7 +3,6 @@ uvicorn
 pydantic
 requests
 numpy
-faiss-cpu
 python-dotenv
 streamlit
 pandas

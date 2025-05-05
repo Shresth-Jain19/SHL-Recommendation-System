@@ -1,17 +1,11 @@
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
-from typing import List, Optional
-import os
-import numpy as np
+from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
 from sentence_transformers import SentenceTransformer
 import chromadb
-
-from app.data_loader import load_shl_data, prepare_text_for_embedding
-
+from app.gemini_utils import get_query_from_url
 from app.recommender import chroma_search
-from app.gemini_utils import get_query_from_url  # If you have this utility
-
 
 
 class RecommendRequest(BaseModel):
@@ -28,27 +22,26 @@ class AssessmentResponse(BaseModel):
 
 app = FastAPI()
 
-# Add this near your other endpoints
+# BASE URL
 @app.get("/")
 def root():
     return {"message": "SHL Recommendation API is running"}
 
+# HEALTH CHECK
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
 
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For production, restrict this to your Streamlit domain
+    allow_origins=["https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # ================= CHROMA + GEMINI RECOMMENDER =================
-
-from app.gemini_utils import get_query_from_url
-from app.recommender import chroma_search
 
 # Global variables for lazy loading
 _model = None
@@ -92,39 +85,3 @@ def recommend_assessments(request: RecommendRequest, top_k: int = Query(10, ge=1
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
-
-
-# ============== FAISS RECOMMENDER ==============
-
-# from app.embeddings import get_gemini_embeddings
-# from app.recommender import load_faiss_index, search_faiss_index
-
-# Load data and FAISS index at startup
-# DATA_PATH = "data/SHL_RAW.json"
-# FAISS_INDEX_PATH = "data/faiss_index.bin"
-
-# shl_data = load_shl_data(DATA_PATH)
-# faiss_index = load_faiss_index(FAISS_INDEX_PATH)
-
-# @app.post("/recommend", response_model=List[AssessmentResponse])
-# def recommend_assessments(request: RecommendRequest, top_k: int = Query(10, ge=1, le=10)):
-#     # If input is a URL and Gemini supports it, just pass the URL as the query
-#     query_input = request.query
-#     query_embedding = get_gemini_embeddings([query_input])[0]
-
-#     # Search FAISS index
-#     _, indices = search_faiss_index(faiss_index, np.array(query_embedding), top_k=top_k)
-
-#     # Prepare response
-#     results = []
-#     for idx in indices:
-#         assessment = shl_data[idx]
-#         results.append(AssessmentResponse(
-#             name=assessment.get("name", ""),
-#             url=assessment.get("url", ""),
-#             remote_testing=assessment.get("remote_testing", ""),
-#             adaptive_irt_support=assessment.get("adaptive/irt_support", ""),
-#             duration=assessment.get("duration", ""),
-#             test_type=assessment.get("test_type", "")
-#         ))
-#     return results

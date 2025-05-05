@@ -2,9 +2,9 @@ import requests
 import numpy as np
 from fuzzywuzzy import fuzz
 import json
-from typing import List, Dict, Any
+from typing import List, Dict
 
-API_URL = "https://shl-recommendation-system-yoow.onrender.com/recommend"  # Replace with your API URL
+API_URL = "http://127.0.0.1:8000/"  # Replace with your API URL
 
 # Test queries with ground-truth relevant assessment names
 TEST_QUERIES = [
@@ -170,9 +170,9 @@ def main():
     
     # Save results to file
     try:
-        with open("evaluation_results.json", "w") as f:
+        with open("evaluation_results2.json", "w") as f:
             json.dump(all_metrics, f, indent=2)
-        print("Results saved to evaluation_results.json")
+        print("Results saved to evaluation_results2.json")
     except Exception as e:
         print(f"Error saving results: {e}")
 
