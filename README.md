@@ -4,6 +4,12 @@
 
 An AI-powered system for recommending SHL assessments based on job descriptions, using vector search and natural language processing.
 
+## 🔗 Important Links
+
+- **Streamlit App**: [https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/](https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/)
+- **API Endpoint**: [https://shl-recommendation-system-yoow.onrender.com](https://shl-recommendation-system-yoow.onrender.com)
+- **Project Documentation**: [https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view](https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view)
+
 ## 🚀 Features
 
 - **Natural Language Search**: Enter job descriptions in plain text format
@@ -47,12 +53,6 @@ The system was evaluated using realistic job description queries and URL parsing
 - **F1 Score@10**: 0.778 (harmonic mean of precision and recall)
 
 The results demonstrate that the system achieves high precision at all thresholds, with recall increasing as K increases. The perfect NDCG scores at K=3 and K=5 indicate optimal ranking of the relevant assessments.
-
-## 🔗 Important Links
-
-- **Streamlit App**: [https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/](https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/)
-- **API Endpoint**: [https://shl-recommendation-system-yoow.onrender.com](https://shl-recommendation-system-yoow.onrender.com)
-- **Project Documentation**: [https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view](https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view)
 
 ## 🔧 Technology Stack
 
