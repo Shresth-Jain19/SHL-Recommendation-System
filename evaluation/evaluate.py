@@ -170,9 +170,9 @@ def main():
     
     # Save results to file
     try:
-        with open("evaluation_results2.json", "w") as f:
+        with open("evaluation_results.json", "w") as f:
             json.dump(all_metrics, f, indent=2)
-        print("Results saved to evaluation_results2.json")
+        print("Results saved to evaluation_results.json")
     except Exception as e:
         print(f"Error saving results: {e}")
 

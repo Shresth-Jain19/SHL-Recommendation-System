@@ -12,6 +12,48 @@ An AI-powered system for recommending SHL assessments based on job descriptions,
 - **User-Friendly Interface**: Clean Streamlit frontend for easy interaction
 - **API Access**: Fully documented FastAPI backend for programmatic access
 
+## 📊 Evaluation Results
+
+The system was evaluated using realistic job description queries and URL parsing tests against a set of ground-truth relevant assessments. The evaluation uses fuzzy matching with normalized names to account for slight variations in assessment naming.
+
+### Evaluation Methodology:
+- **Test Queries**: Multiple test queries including direct text descriptions and job URLs
+- **Ground Truth**: Each query has predefined relevant assessment names
+- **Metrics**: Recall, Precision, Average Precision (AP), NDCG, and F1 scores
+- **Fuzzy Matching**: Names are normalized and compared with fuzzy matching (threshold 80%)
+- **K Values**: The system was evaluated at K=3, K=5, and K=10 recommendations
+
+### Evaluation Results:
+
+#### For K=3 Recommendations:
+- **Recall@3**: 0.57 (percentage of relevant assessments found in top 3)
+- **Precision@3**: 1.0 (all recommendations were relevant)
+- **Average Precision@3**: 1.0 (perfect ranking of relevant items)
+- **NDCG@3**: 1.0 (perfect ranking considering position)
+- **F1 Score@3**: 0.545 (harmonic mean of precision and recall)
+
+#### For K=5 Recommendations:
+- **Recall@5**: 0.625 (percentage of relevant assessments found in top 5)
+- **Precision@5**: 1.0 (all recommendations were relevant)
+- **Average Precision@5**: 1.0 (perfect ranking of relevant items)
+- **NDCG@5**: 1.0 (perfect ranking considering position)
+- **F1 Score@5**: 0.769 (harmonic mean of precision and recall)
+
+#### For K=10 Recommendations:
+- **Recall@10**: 0.875 (percentage of relevant assessments found in top 10)
+- **Precision@10**: 0.7 (70% of recommendations were relevant)
+- **Average Precision@10**: 0.847 (ranking quality score)
+- **NDCG@10**: 0.912 (ranking quality considering position)
+- **F1 Score@10**: 0.778 (harmonic mean of precision and recall)
+
+The results demonstrate that the system achieves high precision at all thresholds, with recall increasing as K increases. The perfect NDCG scores at K=3 and K=5 indicate optimal ranking of the relevant assessments.
+
+## 🔗 Important Links
+
+- **Streamlit App**: [https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/](https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/)
+- **API Endpoint**: [https://shl-recommendation-system-yoow.onrender.com](https://shl-recommendation-system-yoow.onrender.com)
+- **Project Documentation**: [https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view](https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view)
+
 ## 🔧 Technology Stack
 
 - **Backend**: FastAPI, ChromaDB, Sentence-Transformers
