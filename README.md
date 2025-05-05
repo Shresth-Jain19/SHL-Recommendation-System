@@ -70,6 +70,8 @@ An AI-powered system for recommending SHL assessments based on job descriptions,
 4. **View Recommendations**: Explore SHL assessments with direct links
 
 ## 🏗️ Architecture
+
+```
 SHL-Recommendation-System/
 ├── app/                     # Backend application code
 │   ├── data_loader.py       # Loads and preprocesses SHL assessment data
@@ -88,6 +90,7 @@ SHL-Recommendation-System/
 ├── build_chroma_db.py       # One-time script to embed SHL data into ChromaDB
 ├── requirements.txt         # Python dependencies
 └── .env                     # API keys and environment variables
+```
 
 ## 🧠 Implementation Details
 
