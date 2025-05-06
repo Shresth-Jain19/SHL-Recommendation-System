@@ -1,14 +1,3 @@
-"""
-SHL Assessment Recommendation System - Gemini AI Utilities
----------------------------------------------------------
-This module integrates Google's Gemini AI for enhanced processing of job URLs.
-It extracts relevant information from job postings to create optimized search
-queries for the recommendation system.
-
-The module handles API configuration, error handling, and prompt engineering
-to ensure high-quality extraction of job requirements.
-"""
-
 from google import genai
 from google.genai.types import Tool, GenerateContentConfig, GoogleSearch
 import os
@@ -29,37 +18,20 @@ client = genai.Client(api_key=GEMINI_API_KEY)
 model_id = "gemini-2.5-flash-preview-04-17"  # Using the latest available Gemini model
 
 def get_query_from_url(url: str) -> str:
-    """
-    Process a job posting URL to extract relevant information for recommendation.
-    
-    Uses Google's Gemini AI with web search capability to visit the URL,
-    read the job description, and create an optimized search query that
-    captures key requirements for finding suitable assessments.
-    
-    Args:
-        url (str): The URL of a job posting
-        
-    Returns:
-        str: A natural language search query optimized for assessment recommendation
-        
-    Notes:
-        - Falls back to a generic query if the URL cannot be processed
-        - Automatically extracts job title, skills, and seniority level
-    """
     # Carefully crafted prompt to guide Gemini's extraction
     prompt = f"""
-Visit this job URL and read the full job description carefully:
-{url}
+    Visit this job URL and read the full job description carefully:
+    {url}
 
-Now generate a **natural language search query** as if someone is trying to find the best SHL assessment(s) for this role.
+    Now generate a **natural language search query** as if someone is trying to find the best SHL assessment(s) for this role.
 
-Include:
-- Job title
-- Key skills (technical + cognitive if any)
-- Level of the role
-- Time constraint if mentioned
-- Output must be ≤ 2 sentences, plain text only
-"""
+    Include:
+    - Job title
+    - Key skills (technical + cognitive if any)
+    - Level of the role
+    - Time constraint if mentioned
+    - Output must be ≤ 2 sentences, plain text only
+    """
 
     try:
         # Call Gemini API with web search capabilities

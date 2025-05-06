@@ -52,33 +52,6 @@ def precision_at_k(recommended: List[str], relevant: List[str], k: int) -> float
     hits = sum(1 for item in recommended_top_k if any(is_similar(item, rel) for rel in relevant))
     return hits / len(recommended_top_k) if recommended_top_k else 0
 
-def average_precision_at_k(recommended: List[str], relevant: List[str], k: int) -> float:
-    """Calculate average precision@k with fuzzy matching"""
-    score = 0.0
-    hits = 0
-    for i, item in enumerate(recommended[:k]):
-        if any(is_similar(item, rel) for rel in relevant):
-            hits += 1
-            score += hits / (i + 1)
-    return score / min(len(relevant), k) if relevant else 0
-
-def ndcg_at_k(recommended: List[str], relevant: List[str], k: int) -> float:
-    """Calculate normalized discounted cumulative gain@k"""
-    dcg = 0.0
-    for i, item in enumerate(recommended[:k]):
-        if any(is_similar(item, rel) for rel in relevant):
-            # Using binary relevance (1 if relevant, 0 if not)
-            dcg += 1.0 / np.log2(i + 2)  # +2 because i is 0-indexed
-    
-    # Calculate ideal DCG (items sorted by relevance)
-    idcg = sum(1.0 / np.log2(i + 2) for i in range(min(len(relevant), k)))
-    
-    return dcg / idcg if idcg > 0 else 0.0
-
-def f1_score(precision: float, recall: float) -> float:
-    """Calculate F1 score from precision and recall"""
-    return 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
-
 def evaluate_query(query: str, relevant: List[str], k_values: List[int] = [3, 5, 10]) -> Dict[int, Dict[str, float]]:
     """Evaluate a single query for multiple k values"""
     try:
@@ -97,19 +70,13 @@ def evaluate_query(query: str, relevant: List[str], k_values: List[int] = [3, 5,
                 if k <= len(recommended_names):
                     recall = recall_at_k(recommended_names, relevant, k)
                     precision = precision_at_k(recommended_names, relevant, k)
-                    ap = average_precision_at_k(recommended_names, relevant, k)
-                    ndcg = ndcg_at_k(recommended_names, relevant, k)
-                    f1 = f1_score(precision, recall)
                     
                     metrics[k] = {
                         "recall": recall,
                         "precision": precision,
-                        "ap": ap,
-                        "ndcg": ndcg,
-                        "f1": f1
                     }
                     
-                    print(f"k={k}: Recall={recall:.2f}, Precision={precision:.2f}, AP={ap:.2f}, NDCG={ndcg:.2f}, F1={f1:.2f}")
+                    print(f"k={k}: Recall={recall:.2f}, Precision={precision:.2f}")
             
             # Analyze incorrect results
             if k_values[0] <= len(recommended_names):
@@ -137,7 +104,7 @@ def evaluate_query(query: str, relevant: List[str], k_values: List[int] = [3, 5,
 
 def main():
     k_values = [3, 5, 10]
-    all_metrics = {k: {"recall": [], "precision": [], "ap": [], "ndcg": [], "f1": []} for k in k_values}
+    all_metrics = {k: {"recall": [], "precision": []} for k in k_values}
     
     print(f"Evaluating against API: {API_URL}\n")
     
@@ -156,16 +123,9 @@ def main():
         if metrics["recall"]:  # Check if we have any data
             mean_recall = np.mean(metrics["recall"])
             mean_precision = np.mean(metrics["precision"])
-            mean_ap = np.mean(metrics["ap"])
-            mean_ndcg = np.mean(metrics["ndcg"])
-            mean_f1 = np.mean(metrics["f1"])
             
             print(f"=== Performance at k={k} ===")
             print(f"Mean Recall@{k}: {mean_recall:.2f}")
-            print(f"Mean Precision@{k}: {mean_precision:.2f}")
-            print(f"MAP@{k}: {mean_ap:.2f}")
-            print(f"Mean NDCG@{k}: {mean_ndcg:.2f}")
-            print(f"Mean F1@{k}: {mean_f1:.2f}")
             print("")
     
     # Save results to file

@@ -1,6 +1,6 @@
 # SHL Assessment Recommendation System
 
-![SHL Recommender](https://img.shields.io/badge/AI-Powered-brightgreen) ![Python](https://img.shields.io/badge/Python-3.12+-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-009688) ![ChromaDB](https://img.shields.io/badge/ChromaDB-Latest-purple)
+![SHL Recommender](https://img.shields.io/badge/AI-Powered-brightgreen) ![Python](https://img.shields.io/badge/Python-3.11+-blue) ![FastAPI](https://img.shields.io/badge/FastAPI-Latest-009688) ![ChromaDB](https://img.shields.io/badge/ChromaDB-Latest-purple)
 
 An AI-powered system for recommending SHL assessments based on job descriptions, using vector search and natural language processing.
 
@@ -34,25 +34,16 @@ The system was evaluated using realistic job description queries and URL parsing
 #### For K=3 Recommendations:
 - **Recall@3**: 0.57 (percentage of relevant assessments found in top 3)
 - **Precision@3**: 1.0 (all recommendations were relevant)
-- **Average Precision@3**: 1.0 (perfect ranking of relevant items)
-- **NDCG@3**: 1.0 (perfect ranking considering position)
-- **F1 Score@3**: 0.545 (harmonic mean of precision and recall)
 
 #### For K=5 Recommendations:
 - **Recall@5**: 0.625 (percentage of relevant assessments found in top 5)
 - **Precision@5**: 1.0 (all recommendations were relevant)
-- **Average Precision@5**: 1.0 (perfect ranking of relevant items)
-- **NDCG@5**: 1.0 (perfect ranking considering position)
-- **F1 Score@5**: 0.769 (harmonic mean of precision and recall)
 
 #### For K=10 Recommendations:
 - **Recall@10**: 0.875 (percentage of relevant assessments found in top 10)
 - **Precision@10**: 0.7 (70% of recommendations were relevant)
-- **Average Precision@10**: 0.847 (ranking quality score)
-- **NDCG@10**: 0.912 (ranking quality considering position)
-- **F1 Score@10**: 0.778 (harmonic mean of precision and recall)
 
-The results demonstrate that the system achieves high precision at all thresholds, with recall increasing as K increases. The perfect NDCG scores at K=3 and K=5 indicate optimal ranking of the relevant assessments.
+The results demonstrate that the system achieves high precision at all thresholds, with recall increasing as K increases.
 
 ## 🔧 Technology Stack
 
@@ -64,14 +55,14 @@ The results demonstrate that the system achieves high precision at all threshold
 
 ## 📋 Prerequisites
 
-- Python 3.12+
+- Python 3.11+
 - Google Gemini API key
 
 ## 💻 Installation
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/SHL-Recommendation-System.git
+   git clone https://github.com/ShresthJn19/SHL-Recommendation-System
    cd SHL-Recommendation-System
    ```
 
@@ -140,18 +131,6 @@ SHL-Recommendation-System/
 - **Query Processing**: Job descriptions are analyzed semantically to extract key skills and requirements
 - **URL Processing**: Gemini AI parses job URLs to extract relevant information for assessment matching
 - **Top-K Search**: Cosine similarity between query and assessment embeddings determines the best matches
-
-## 🔜 Future Improvements
-
-- Custom assessment filtering based on specific criteria
-- Advanced analytics dashboard for employers
-- Multilingual support for international job descriptions
-- Integration with ATS (Applicant Tracking Systems)
-- Custom assessment sequences for different hiring stages
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 

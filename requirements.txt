@@ -1,6 +1,5 @@
 fastapi
 uvicorn
-gunicorn
 pydantic
 requests
 numpy
@@ -13,3 +12,4 @@ beautifulsoup4
 chromadb
 sentence-transformers
 hf_xet
+psutil
