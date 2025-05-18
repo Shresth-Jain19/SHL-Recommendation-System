@@ -4,7 +4,7 @@ import pandas as pd
 
 st.set_page_config(page_title="SHL Assessment Recommendation", page_icon="🎯", layout="wide")
 
-API_URL = "http://13.233.216.63"
+API_URL = "http://65.2.125.132"
 
 # Custom CSS for modern look
 st.markdown("""
