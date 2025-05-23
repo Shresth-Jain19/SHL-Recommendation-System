@@ -7,9 +7,7 @@ An AI-powered system for recommending SHL assessments based on job descriptions,
 ## 🔗 Important Links
 
 - **Streamlit App**: [https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/](https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/)
-- ***New* API Endpoint (AWS)**: [http://65.2.125.132/health](http://65.2.125.132/health)
-- ***OLD* API Endpoint**: [https://shl-recommendation-system-yoow.onrender.com](https://shl-recommendation-system-yoow.onrender.com)
-  > ⚠️ *Note: This API endpoint may take a few minutes to load or might occasionally return an error, especially on first access. This is due to limitations of Render's free tier. Kindly try New AWS API Endpoint.*
+- **API Endpoint**: [http://65.2.125.132](http://65.2.125.132)
 - **Project Documentation**: [https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view](https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view)
 
 ## 🚀 Features
