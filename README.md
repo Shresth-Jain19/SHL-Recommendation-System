@@ -4,12 +4,6 @@
 
 An AI-powered system for recommending SHL assessments based on job descriptions, using vector search and natural language processing.
 
-## 🔗 Important Links
-
-- **Streamlit App**: [https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/](https://shl-assessment-recommendation-system-shresth-jn.streamlit.app/)
-- **API Endpoint**: [http://65.2.125.132](http://65.2.125.132)
-- **Project Documentation**: [https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view](https://drive.google.com/file/d/12vaBVp5QY2OcSWhAiUXSsV_xho4KUkMO/view)
-
 ## 🚀 Features
 
 - **Natural Language Search**: Enter job descriptions in plain text format
@@ -135,3 +129,4 @@ SHL-Recommendation-System/
 ---
 
 Built with ❤️ by Shresth Jain
+
